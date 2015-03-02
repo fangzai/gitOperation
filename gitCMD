@@ -1,0 +1,26 @@
+关于git常用命令的总结
+
+
+git add README    # 添加README这个文件到git中  空文件夹无法add
+git commit -m 'first commit'  # 快照，这个时候还没有提交，first commit表示注释信息
+git remote add origin git@github.com:fangzai/qihoo_ops.git  # 远程链接
+git push -u origin master                            # 这一句将会完成更新工作
+
+每次文件文件修改以后，希望服务器端更新，调用git add ××,后面重复
+如果提示 fatal: 远程 origin 已经存在。
+git remote rm origin 删掉origin 然后继续
+
+ git push origin master 把文件从服务器拉下来
+
+执行push的时候，有时候会出现
+git push -u  origin master
+会出现以下错误：
+ ! [rejected]        master -> master (non-fast-forward)
+error: 无法推送一些引用到 'https://github.com/xxxxx/xxx.git'
+提示：更新被拒绝，因为您当前分支的最新提交落后于其对应的远程分支。
+提示：再次推送前，先与远程变更合并（如 'git pull'）。详见
+提示：'git push --help' 中的 'Note about fast-forwards' 小节。
+执行：
+git config branch.master.remote origin
+git config branch.master.merge refs/heads/master
+git pull

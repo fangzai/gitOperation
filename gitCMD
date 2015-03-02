@@ -24,3 +24,10 @@ error: 无法推送一些引用到 'https://github.com/xxxxx/xxx.git'
 git config branch.master.remote origin
 git config branch.master.merge refs/heads/master
 git pull
+
+
+如果要删除某个文件的直接 
+git rm -r --cached filename
+git commit
+git push就可以了
+

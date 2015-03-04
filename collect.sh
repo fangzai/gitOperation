@@ -1,6 +1,8 @@
 #!/bin/bash
 #平时收集的字符处理代码
 cat -n upCommand |sed 's/^[ \t]*//g'  |grep "^1"   # 显示某行文本，这里显示的是第一行
+tr -s ' '  #删除重复空格
+sed 's/ ./.g'  #功能也是删除重复空格 tr的功能都可以由sed实现
 sed -n '3p' upCommand    #完成的也是这个功能   sed -n '1,3p' upCommand #输出1-3行
 head -3 upCommand | tail -1
 
@@ -14,7 +16,8 @@ sed -i '/instance/a\hello world' textfile  # 在textfile寻找/instance/模式�
 # a\是附加 append c\是correct的意思
 sed 's/instance/INSTANCE/g' textfile  #/instance/模式被/INSTANCE/模式给替换掉了，g选项表示全局的，默认是单个的p
 sed 's/-*//g' textfile  #删除---
-sed '/^$/d' textfile    #删除空行
+sed '/^$/d' textfile    #删除空行 
+tr -s '\n' textfile  # 功能也是删除空行
 sed '$d' textfile #删除最后一行
 
 
@@ -50,4 +53,10 @@ grep -n "\<This\>" textfile  # 输出textfile中包含This这个单词的行，-
 
 #查询ip地址
 grep "[0-9]\{3\}\.[0-9]\{3\}\.[0-9]\{3\}" ipfile
+
+#awk相关操作，其由各种操作和模式构成，这里默认的分割符号就是空白，所以就没有 -F选项了
+cat awkText | awk '{ print $1}'  #不知道为什么加了BEGIN之后就有问题了
+#cat awkText | awk 'BEGIN { print $1} END {"End of the report"}'
+cat awkText | awk '{if($5 =="4096") print $0}'  #第五列满足条件的输出
+
 

@@ -60,3 +60,8 @@ cat awkText | awk '{ print $1}'  #不知道为什么加了BEGIN之后就有问�
 cat awkText | awk '{if($5 =="4096") print $0}'  #第五列满足条件的输出
 
 
+awk '{if($0~/^$/)print NR}' file  #file1 里面空行的所在行号
+grep -n ^$ file |awk 'BEGIN{FS=":"}{print $1}'
+find / -name "*.log" -ctime +3 -exec rm -f {} \;  #查找最后创建时间是3天前，后缀是*.log的文件并删除
+find . -size +100k -exec cp {} /tmp \;            #写一个脚本将某目录下大于100k的文件移动至/tmp下。
+

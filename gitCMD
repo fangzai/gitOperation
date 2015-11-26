@@ -1,5 +1,10 @@
 关于git常用命令的总结
 
+git config --global user.name  "注册github的邮箱"
+
+git config --global user.email  "email"
+# 接着把id_rsa等文件拷贝到~/.ssh/里面去
+# 然后ssh -v git@github.com 测试一下通道就可以了
 
 git add README    # 添加README这个文件到git中  空文件夹无法add
 git commit -m 'first commit'  # 快照，这个时候还没有提交，first commit表示注释信息
